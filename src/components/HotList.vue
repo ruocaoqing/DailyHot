@@ -172,11 +172,12 @@ const getHotListsData = async (name, isNew = false) => {
     // hotListData.value = null;
     loadingError.value = false;
     const item = store.newsArr.find((item) => item.name == name);
+    debugger
     const result = await getHotLists(item.name, isNew, item.params);
     // console.log(result);
     if (result.code === 200) {
       listLoading.value = false;
-      hotListData.value = result;
+      hotListData.value = result.data;
       // 滚动至顶部
       if (scrollbarRef.value) {
         scrollbarRef.value.scrollTo({ position: "top", behavior: "smooth" });
@@ -209,7 +210,7 @@ const getNewData = () => {
 
 // 链接跳转
 const jumpLink = (data) => {
-  if (!data.url || !data.mobileUrl) return $message.error("链接不存在");
+  if (!data.url && !data.mobileUrl) return $message.error("链接不存在");
   const url = window.innerWidth > 680 ? data.url : data.mobileUrl;
   if (store.linkOpenType === "open") {
     window.open(url, "_blank");
