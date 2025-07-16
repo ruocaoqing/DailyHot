@@ -141,8 +141,8 @@ export const mainStore = defineStore("mainData", {
           show: true,
         },
         {
-          label: "简书",
-          name: "jianshu",
+          label: "夸克",
+          name: "quark",
           order: 22,
           show: true,
         },
